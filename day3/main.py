@@ -107,9 +107,7 @@ def part_2(data: str):
             y += 1
             continue
         if found == 1:
-            # print(numbers[0])
             pairs[f"{coor[0]},{coor[1]}"].append(numbers[0])
-            # total += int(numbers[0])
             found = False
         numbers.pop(0)
     res = []
