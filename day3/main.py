@@ -23,7 +23,7 @@ def flood_find(y, x, width, height):
         return
     if lines[y][x] == '.':
         return
-    if lines[y][x] == '.' and not lines[y][x].isdigit():
+    if lines[y][x] != '.' and not lines[y][x].isdigit():
         global found
         found = True
         return
@@ -44,10 +44,9 @@ def part_1(data: str):
     y = 0
     global lines
     global found
-    lines = [ list(line) for line in data.splitlines() ]
+    lines = [ list(lst) for lst in data.splitlines() ]
 
     numbers = re.findall('[0-9]+', data)
-
     while y < len(lines) and len(numbers):
         x = ''.join(lines[y]).find(numbers[0])
         if x != -1:
@@ -56,7 +55,6 @@ def part_1(data: str):
             y += 1
             continue
         if found == 1:
-            # print(numbers[0])
             total += int(numbers[0])
             found = False
         numbers.pop(0)
@@ -122,4 +120,4 @@ def part_2(data: str):
     return sum(res)
 
 print(part_1(data))
-# print(part_2(data))
+print(part_2(data))
