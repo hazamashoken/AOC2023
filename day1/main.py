@@ -9,20 +9,23 @@ with open(os.path.join(os.path.dirname(__file__), FILE)) as f:
     data = f.read().splitlines()
 
 # Part 1
-# sum = 0
 
-# for i in range(len(data)):
-#     numbers = re.findall(r"\d+", data[i])
-#     first = str(numbers[0])[0]
-#     last = str(numbers[-1])[-1]
-#     sum += int(first + last)
+def part_1(data):
+    sum = 0
 
-# print(sum)
+    for i in range(len(data)):
+        numbers = re.findall(r"\d+", data[i])
+        first = str(numbers[0])[0]
+        last = str(numbers[-1])[-1]
+        sum += int(first + last)
+
+
+    return sum
 
 # Part 2
-pattern = re.compile(r'(?=(\d|one|two|three|four|five|six|seven|eight|nine|zero))', re.IGNORECASE)
+PATTERN = re.compile(r'(?=(\d|one|two|three|four|five|six|seven|eight|nine|zero))', re.IGNORECASE)
 
-number_dict = {
+NUMBER_DICT = {
     "one": 1,
     "two": 2,
     "three": 3,
@@ -43,11 +46,14 @@ number_dict = {
     "9" :9
 }
 
-total = 0
+def part_2(data):
+    total = 0
 
-for i in range(len(data)):
-    matches = pattern.findall(data[i])
-    print(matches[0], matches[-1])
-    total += int(str(number_dict[matches[0]]) + str(number_dict[matches[-1]]))
+    for i in range(len(data)):
+        matches = PATTERN.findall(data[i])
+        total += int(str(NUMBER_DICT[matches[0]]) + str(NUMBER_DICT[matches[-1]]))
+    return total
 
-print(total)
+
+print(part_1(data))
+print(part_2(data))
